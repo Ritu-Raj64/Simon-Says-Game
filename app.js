@@ -28,10 +28,10 @@ document.addEventListener(
 
 
 /* mobile touch */
-
-document.addEventListener(
-    "touchstart",
-    startGame
+document.querySelector(".container")
+    .addEventListener(
+        "touchstart",
+        startGame
 );
 
 
@@ -83,10 +83,15 @@ function checkAns(idx){
         }
         
     } else {
-       p.innerHTML =
+       
+        let p = document.querySelector("p");
+
+        p.innerHTML =
             `Game Over! 
             <b>Your Level was: ${level-1}</b><br>
             Tap or Press Any Key to Restart`;
+
+
         
 
         let timer = function(){
