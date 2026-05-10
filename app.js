@@ -1,16 +1,25 @@
-let gameOrder=[];
-let userOrder=[];
 
-let started=false;
-let gameCol=['green','red','yellow','blue']
-let level=0;
-let Score=0
+let gameOrder = [];
+let userOrder = [];
+
+let started = false;
+
+let gameCol = [
+    "green",
+    "red",
+    "yellow",
+    "blue"
+];
+
+let level = 0;
+
 let highScoreValue = 0;
 
+//    START GAME
 
 function startGame(){
 
-    if(started == false){
+    if(!started){
 
         started = true;
 
@@ -18,8 +27,7 @@ function startGame(){
     }
 }
 
-
-/* keyboard */
+/* keyboard support */
 
 document.addEventListener(
     "keydown",
@@ -27,23 +35,13 @@ document.addEventListener(
 );
 
 
-/* mobile touch */
-document.querySelector(".container")
+/* mobile + mouse support */
+
+document.querySelector(".blink")
     .addEventListener(
-        "touchstart",
+        "pointerdown",
         startGame
 );
-
-
-/* mouse click */
-
-document.querySelector(".container")
-    .addEventListener(
-        "click",
-        startGame
-);
-
-
 
 function btnFlash(btn){
     btn.classList.add("game-style");
@@ -144,8 +142,6 @@ function highScore(){
 
     score.innerText = highScoreValue;
 }
-
-
 
 function reset(){
     started=false;
