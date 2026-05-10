@@ -7,13 +7,43 @@ let level=0;
 let Score=0
 let highScoreValue = 0;
 
-document.addEventListener('keydown',function(){
-    if(started==false){
-        started=true;
+
+function startGame(){
+
+    if(started == false){
+
+        started = true;
+
         levelUp();
     }
+}
 
-});
+
+/* keyboard */
+
+document.addEventListener(
+    "keydown",
+    startGame
+);
+
+
+/* mobile touch */
+
+document.addEventListener(
+    "touchstart",
+    startGame
+);
+
+
+/* mouse click */
+
+document.querySelector(".container")
+    .addEventListener(
+        "click",
+        startGame
+);
+
+
 
 function btnFlash(btn){
     btn.classList.add("game-style");
@@ -53,8 +83,10 @@ function checkAns(idx){
         }
         
     } else {
-       let p=document.querySelector('p');
-        p.innerHTML=`Game Over! <b>Your Level is: ${level-1}</b>, Press any Key to restart the game. `;
+       p.innerHTML =
+            `Game Over! 
+            <b>Your Level was: ${level-1}</b><br>
+            Tap or Press Any Key to Restart`;
         
 
         let timer = function(){
