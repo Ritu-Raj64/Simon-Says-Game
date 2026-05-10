@@ -18,7 +18,7 @@ The game tests your memory by generating an increasingly difficult color sequenc
 
 OR
 
-[https://github.com/user-attachments/assets/add-your-video-link-here](https://github.com/user-attachments/assets/demo-asset.mp4)
+[https://github.com/user-attachments/assets/add-your-video-link-here](https://github.com/user-attachments/assets/demo-video.mp4)
 
 > Upload your screen recording video on GitHub and paste the generated link above.
 
