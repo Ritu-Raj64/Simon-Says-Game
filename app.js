@@ -5,8 +5,9 @@ let started=false;
 let gameCol=['green','red','yellow','blue']
 let level=0;
 let Score=0
+let highScoreValue = 0;
 
-document.addEventListener('keypress',function(){
+document.addEventListener('keydown',function(){
     if(started==false){
         started=true;
         levelUp();
@@ -15,26 +16,34 @@ document.addEventListener('keypress',function(){
 });
 
 function btnFlash(btn){
-    btn.classList.add("class","game-style");
+    btn.classList.add("game-style");
      setTimeout(()=>{
-       btn.classList.remove("class","game-style")
+       btn.classList.remove("game-style");
     },250);
 }
 
 function levelUp(){
-    userOrder=[];
-    Score++;
-    level++;
-    p=document.querySelector('p');
-    p.innerText=`level ${level}`;
 
-    let randomIdx=Math.floor(Math.random()*gameCol.length);
-    console.log(randomIdx)
-    let randomBtn =document.querySelector(`#${gameCol[randomIdx]}`);
-     gameOrder.push(gameCol[randomIdx])
-     console.log(gameOrder)
+    userOrder = [];
+
+    level++;
+
+    let p = document.querySelector("p");
+
+    p.innerText = `Level ${level}`;
+
+    let randomIdx =
+        Math.floor(Math.random() * gameCol.length);
+
+    let randomColor =
+        gameCol[randomIdx];
+
+    let randomBtn =
+        document.querySelector(`#${randomColor}`);
+
+    gameOrder.push(randomColor);
+
     btnFlash(randomBtn);
-      
 }
 
 function checkAns(idx){
@@ -44,11 +53,11 @@ function checkAns(idx){
         }
         
     } else {
-        p=document.querySelector('p');
-        p.innerHTML=`Game Over! <b>Your Score is: ${level-1}</b>, Press any Key to restart the game. `;
+       let p=document.querySelector('p');
+        p.innerHTML=`Game Over! <b>Your Level is: ${level-1}</b>, Press any Key to restart the game. `;
         
 
-        timer = function(){
+        let timer = function(){
             document.querySelector("body").classList.toggle("red");
         };
 
@@ -67,31 +76,39 @@ function checkAns(idx){
 }
 
 function btnPress(){
-    btn=this;
+   if(started==true){
+    let btn=this;
     btnFlash(btn);
 
-    userCol=btn.getAttribute('id');
-    console.log(userCol);
+    let userCol=btn.getAttribute('id');
+   
     userOrder.push(userCol);
-    console.log(userOrder);
+    
 
     checkAns(userOrder.length-1);
+   }
 
 }
 
 let allBtns=document.querySelectorAll('.btn');
-for(btn of allBtns){
+for(let btn of allBtns){
     btn.addEventListener('click',btnPress);
 }
 
+
 function highScore(){
 
-    if(level>=Score){
-        Score=level-1;
+    if(level > highScoreValue){
+
+        highScoreValue = level;
     }
-    let score=document.querySelector("#score");
-    score.innerText=Score;
+
+    let score = document.querySelector("#score");
+
+    score.innerText = highScoreValue;
 }
+
+
 
 function reset(){
     started=false;
